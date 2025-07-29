@@ -6,6 +6,15 @@ def info_movie(movie_title, release_date, movie_genre):
     general_info = [movie_title, release_date, movie_genre]
     movies.append(general_info)
 
+def display_movies():
+    if len(movies) != 0:
+        for movie in movies:
+            print(f"\n -- {movie[0].upper()} --")
+            print(f"Año de estreno de película: {movie[1]}")
+            print(f"Género de película: {movie[2]}\n")
+    else:
+        print("No hay películas registradas\n")
+
 while True:
     print(f"+++ MENÚ PELICULAS +++")
     print(f"1. Agregar películas")
@@ -20,15 +29,14 @@ while True:
         case "1":
             number_of_movies = int(input(f"\n¿Cuántas películas desea ingresar?: "))
             for i in range (number_of_movies):
-                movie_title = input(f"Ingrese el titulo de la película {i+1}: ").lower()
+                movie_title = input(f"Ingrese el titulo de la película {(i+1)}: ").lower()
                 release_date = input(f"Ingrese el año de estreno {i+1}: ")
                 movie_genre = input(f"Ingrese el género de la película {i+1}: ").lower()
                 info_movie(movie_title, release_date, movie_genre)
 
-            print(movies)
-
         case "2":
-            print(f"\nPelículas registradas")
+            print(f"\nPelículas registradas:")
+            display_movies()
 
         case "3":
             print(f"\nBuscar películas según su género")
