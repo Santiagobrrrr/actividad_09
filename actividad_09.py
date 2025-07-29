@@ -32,6 +32,33 @@ def delete_movie(title_user):
         else:
             print(f"Película no encontrada\n")
 
+def show_statistics():
+    if len(movies) == 0:
+        print("No hay películas registradas para mostrar estadísticas.\n")
+
+    print(f"Cntidad total de películas registradas: {len(movies)}")
+
+    genre_count = {}
+
+    for movie in movies:
+        genre = movie[2]
+        if genre in genre_count:
+            genre_count[genre] += 1
+        else:
+            genre_count[genre] = 1
+
+    print("\nPelículas por género:")
+    for genre, count in genre_count.items():
+        print(f" - {genre}: {count}")
+
+    oldest_movie = movies[0]
+    for movie in movies:
+        if movie[1] < oldest_movie[1]:
+            oldest_movie = movie
+
+    print(f"\nPelícula más antigua registrada:")
+    print(f" - {oldest_movie[0].upper()} ({oldest_movie[1]}) - Año de estreno: {oldest_movie[1]}\n")
+
 while True:
     print(f"+++ MENÚ PELICULAS +++")
     print(f"1. Agregar películas")
@@ -47,7 +74,7 @@ while True:
             number_of_movies = int(input(f"\n¿Cuántas películas desea ingresar?: "))
             for i in range (number_of_movies):
                 movie_title = input(f"Ingrese el titulo de la película {(i+1)}: ").lower()
-                release_movie = input(f"Ingrese el año de estreno {i+1}: ")
+                release_movie = int(input(f"Ingrese el año de estreno {i+1}: "))
                 movie_genre = input(f"Ingrese el género de la película {i+1}: ").lower()
                 info_movie(movie_title, release_movie, movie_genre)
 
@@ -67,6 +94,7 @@ while True:
 
         case "5":
             print(f"\nVer estadística")
+            show_statistics()
 
         case "6":
             print(f"\nSalió del menú, gracias por su visita")
