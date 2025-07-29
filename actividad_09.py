@@ -1,9 +1,7 @@
-from platform import release
-
 movies = []
 
-def info_movie(movie_title, release_date, movie_genre):
-    general_info = [movie_title, release_date, movie_genre]
+def info_movie(movie_title, release_movie, movie_genre):
+    general_info = [movie_title, release_movie, movie_genre]
     movies.append(general_info)
 
 def display_movies():
@@ -14,6 +12,13 @@ def display_movies():
             print(f"Género de película: {movie[2]}\n")
     else:
         print("No hay películas registradas\n")
+
+def search_movie(genre_user):
+    print(f"\n Películas encontradas con el género {genre_user}:")
+    for movie in movies:
+        if genre_user in movie[2]:
+            print(f"-- {movie[0].upper()} --")
+    print(f"")
 
 while True:
     print(f"+++ MENÚ PELICULAS +++")
@@ -30,9 +35,9 @@ while True:
             number_of_movies = int(input(f"\n¿Cuántas películas desea ingresar?: "))
             for i in range (number_of_movies):
                 movie_title = input(f"Ingrese el titulo de la película {(i+1)}: ").lower()
-                release_date = input(f"Ingrese el año de estreno {i+1}: ")
+                release_movie = input(f"Ingrese el año de estreno {i+1}: ")
                 movie_genre = input(f"Ingrese el género de la película {i+1}: ").lower()
-                info_movie(movie_title, release_date, movie_genre)
+                info_movie(movie_title, release_movie, movie_genre)
 
         case "2":
             print(f"\nPelículas registradas:")
@@ -40,6 +45,8 @@ while True:
 
         case "3":
             print(f"\nBuscar películas según su género")
+            genre_user = input(f"Ingrese un género de película: ").lower()
+            search_movie(genre_user)
 
         case "4":
             print(f"\nEliminar películas")
