@@ -21,8 +21,16 @@ def search_movie(genre_user):
             print(f"{movie[0].upper()}: {movie[1]}")
             count += 1
     if count == 0:
-        print(f"No hay ninguna pleícula con ese género.")
+        print(f"No hay ninguna película con ese género.")
     print("")
+
+def delete_movie(title_user):
+    for movie in movies:
+        if title_user == movie[0]:
+            movies.remove(movie)
+            print(f"Película eliminada exitosamente\n")
+        else:
+            print(f"Película no encontrada\n")
 
 while True:
     print(f"+++ MENÚ PELICULAS +++")
@@ -53,7 +61,9 @@ while True:
             search_movie(genre_user)
 
         case "4":
-            print(f"\nEliminar películas")
+            print(f"\nEliminar película")
+            title_user = input(f"Ingrese el nombre de la película a eliminar: ").lower()
+            delete_movie(title_user)
 
         case "5":
             print(f"\nVer estadística")
