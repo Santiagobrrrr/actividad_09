@@ -14,11 +14,15 @@ def display_movies():
         print("No hay películas registradas\n")
 
 def search_movie(genre_user):
-    print(f"\n Películas encontradas con el género {genre_user}:")
+    print(f"\nPelículas encontradas con el género {genre_user}:")
+    count = 0
     for movie in movies:
-        if genre_user in movie[2]:
-            print(f"-- {movie[0].upper()} --")
-    print(f"")
+        if movie[2] == genre_user:
+            print(f"{movie[0].upper()}: {movie[1]}")
+            count += 1
+    if count == 0:
+        print(f"No hay ninguna pleícula con ese género.")
+    print("")
 
 while True:
     print(f"+++ MENÚ PELICULAS +++")
